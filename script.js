@@ -83,7 +83,7 @@ function AlterarConteudo(url, img, posicao){
     case 3:
       titulo.innerHTML =
       `<H1>Hora de recarregar<br>os motores.</h1>
-      <h1 class="apresentacao-destaque">Faça uma pausa<br>entre as estrelas!</h1>`
+      <h1 class="apresentacao-destaque">Faça uma pausa<br>longa no cosmos!</h1>`
       break;
 
   }
