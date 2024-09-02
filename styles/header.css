@@ -1,0 +1,22 @@
+.texto-header{
+    width: 100%;
+    height: 4rem;
+    font-size: 1.6rem;
+    color: white;
+    font-family: var(--fonte-zen);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+    .texto-header{
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .texto-header{
+        font-size: 1.5rem;
+    }
+}

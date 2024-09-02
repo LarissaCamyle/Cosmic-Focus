@@ -1,0 +1,157 @@
+.minutagem {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--fundo);
+    border: 4px solid var(--borda);
+    border-radius: 2rem;
+    height: 23rem ;
+    width: 30rem;
+}
+
+.minutagem-tipos{
+    height: 3rem;
+    width: 100%;
+    color: white;
+    font-size: 1.1rem;
+    font-family: var(--fonte-russo);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+
+.minutagem-destaque{
+    background: var(--cor-destaque);
+    padding: 0.9rem;
+    border-radius: 0.7rem;
+}
+
+.minutagem-minutos{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 7.5rem;
+    color: white;
+    font-family: var(--fonte-orbitron);
+    font-weight: 700;
+    margin-top: 1.5rem;
+}
+
+.minutagem-musica {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-size: 1rem;
+    font-family: var(--fonte-orbitron);
+    font-weight: 600;
+    gap: 0.8rem;
+}
+
+.btn-musica{
+    border-radius: 0.9rem;
+    width: 4rem;
+    height: 2rem;
+    background: var(--cor-destaque);
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn-musica-bola{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s;
+}
+
+.btn-musica-bola-animacao{
+    transform: translateX(2.3rem); 
+    right: 0;
+}
+
+.minutagem-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
+}
+
+.btn-comecar{
+    width: 12rem;
+    gap: 0.5rem;
+    background: var(--cor-destaque);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    padding: 0.3rem;
+    color: white;
+    align-items: center;
+    flex-direction: row;
+    font-family: var(--fonte-orbitron);
+    font-weight: bolder;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 370px) {
+    .minutagem {
+        width: 95%;
+        height: 21rem;
+    }
+    .minutagem-tipos{
+        font-size: 0.8rem;
+    }
+    .minutagem-destaque{
+        padding: 0.8rem;
+        border-radius: 0.7rem;
+    }
+    .minutagem-minutos{
+        font-size: 4.5rem;
+    }
+    .minutagem-musica {
+        font-size: 0.9rem;
+    }
+    .btn-comecar{
+        width: 10rem;
+        font-size: 1rem;
+    } 
+}
+
+@media screen and (min-width: 370px) and (max-width: 600px) {
+    .minutagem {
+        width: 90%;
+        height: 21rem;
+    }
+    .minutagem-tipos{
+        font-size: 0.9rem;
+    }
+    .minutagem-destaque{
+        padding: 0.8rem;
+        border-radius: 0.7rem;
+    }
+    .minutagem-minutos{
+        font-size: 5rem;
+    }
+    .minutagem-musica {
+        font-size: 1rem;
+    }
+    .btn-comecar{
+        width: 11rem;
+        font-size: 1.1rem;
+    }
+}

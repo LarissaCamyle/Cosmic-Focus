@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Russo+One&family=Zen+Dots&display=swap');
+@import url('/styles/reset.css');
+@import url('/styles/header.css');
+@import url('/styles/apresentacao.css');
+@import url('/styles/minutagem.css');
+@import url('/styles/tarefas.css');
+
+
+:root{
+    --fonte-zen : "Zen Dots", sans-serif;
+    --fonte-exo : "Exo", sans-serif;
+    --fonte-orbitron : "Orbitron", sans-serif;
+    --fonte-russo : "Russo One", sans-serif;
+
+    --cor-1: #602CFF;
+    --fundo-1 : rgba(55, 0, 255, 0.05);
+    --borda-1 : rgba(55, 0, 255, 0.15);
+
+    --cor-2: #008CFF;
+    --fundo-2 : rgba(0, 111, 255, 0.05);
+    --borda-2 : rgba(0, 111, 255, 0.15);
+    
+    --cor-3: #FF1131;
+    --fundo-3 : rgba(255, 21, 95, 0.05);
+    --borda-3 : rgba(255, 21, 95, 0.15);
+
+    --cor-destaque : var(--cor-1);
+    --fundo: var(--fundo-1);
+    --borda : var(--borda-1);
+}
+
+body{
+    background-color: #000;
+    background-image: url('/img/fundo1.png'); 
+    background-repeat: no-repeat;
+    background-position: top center; 
+    background-size: contain;
+    height: 100vh;
+    height: 1920px;
+    overflow-x: hidden; 
+}
+
+/* Estiliza a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; 
+}
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 6px;
+    border: 3px solid #1a1a1a; 
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #555;
+}
