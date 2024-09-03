@@ -4,8 +4,5 @@ O desenvolvimento foi realizado do zero, utilizando **HTML**, **CSS** e **JavaSc
 
 O projeto não só me permitiu aplicar conceitos de manipulação de DOM e estilos, mas também aprimorou minha habilidade de criar interfaces interativas e responsivas, alinhadas com o tema escolhido.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/da5d665d-07ad-467c-a375-f4159dd32dfd/9fdc16a6-ee8e-4662-92fc-be8a6f881cea/image.png)
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/da5d665d-07ad-467c-a375-f4159dd32dfd/b458ccb7-ca7c-4ddf-ab66-3a70057ab771/image.png)
-
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/da5d665d-07ad-467c-a375-f4159dd32dfd/960489a2-ef9f-443d-8506-5996c6101877/image.png)
+Acesse aqui o site: 
+https://cosmic-focus.vercel.app
