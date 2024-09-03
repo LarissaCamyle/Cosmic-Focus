@@ -10,6 +10,7 @@
     border-radius: 2rem;
     height: 23rem ;
     width: 30rem;
+    margin-bottom: 6rem;
 }
 
 .minutagem-tipos{
@@ -97,6 +98,7 @@
 
 .btn-comecar{
     width: 12rem;
+    height: 3rem;
     gap: 0.5rem;
     background: var(--cor-destaque);
     border-radius: 1rem;
@@ -110,6 +112,10 @@
     font-weight: bolder;
     font-size: 1.2rem;
     text-transform: uppercase;
+}
+
+.btn-comecar img{
+    height: 90%;
 }
 
 @media screen and (max-width: 370px) {

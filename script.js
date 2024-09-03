@@ -43,16 +43,24 @@ const btnMusicaFundo = document.querySelector('.btn-musica');
 const musicaFocoInput = document.querySelector('.musica-input');
 const musica = new Audio('/sounds/musica-foco.mp3');
 musica.loop = true;
+//temporizador
+let tempoDecorridoSegundos = 1500;
 
 //ALTERANDO CONTEUDO ----------------------------------------
 //alterando img, texto e cores
 btnFoco.addEventListener('click', () =>{
+  //25min
+  tempoDecorridoSegundos = 1500;
   AlterarConteudo('url("/img/fundo1.png")', 'img/astronauta1.png', 1, btnFoco)
 });
 btnCurto.addEventListener('click', () =>{
+  //5min
+  tempoDecorridoSegundos = 300;
   AlterarConteudo('url("/img/fundo2.png")', 'img/astronauta2.png', 2, btnCurto)
 });
 btnLongo.addEventListener('click', () =>{
+  //15min
+  tempoDecorridoSegundos = 900;
   AlterarConteudo('url("/img/fundo3.png")', 'img/astronauta3.png', 3, btnLongo)
 });
 
@@ -73,6 +81,9 @@ btnMusica.onclick = function () {
 
 //funções alterando conteudo
 function AlterarConteudo(url, img, posicao, btn){
+  //trocar o tempo
+  MostrarTempo();
+
   //mudando imagens de fundo e do astronauta
   body.style.backgroundImage = url;
   imgAstronauta.setAttribute('src', img);
@@ -111,31 +122,62 @@ function AlterarCorTema (posicao, btn){
 }
 
 //TEMPORIZADOR---------------------------------------------------------
-let tempoDecorridoSegundos = 5;
+
 const btnComecar = document.querySelector('.btn-comecar');
+const comecarOuPausarBtn = document.querySelector('.btn-comecar h2');
+const iconBtn = document.querySelector('.btn-comecar img');
+const tempoNaTela = document.querySelector('.minutagem-minutos');
+
+const musicaStart = new Audio('/sounds/play.wav');
+const musicaPause = new Audio('/sounds/pause.mp3');
+const musicaConcluido = new Audio('/sounds/beep.mp3');
+
 let intervaloId = null;
 
 //diminui o número referente aos segundos
 const contagemRegressiva = () => {
+  //CONCLUIDO
   if(tempoDecorridoSegundos <= 0){
+    musicaConcluido.play();
     Zerar();
-    alert('finalizado');
     return
   }
   tempoDecorridoSegundos -= 1
-  console.log(tempoDecorridoSegundos);
+  MostrarTempo();
 }
 
-btnComecar.addEventListener('click', Iniciar);
+btnComecar.addEventListener('click', IniciarEPausar);
 
 //executa a diminuição do num a cada 1 segundo
-function Iniciar (){
-  
+function IniciarEPausar (){
+  //se a contagem já começou
+  if(intervaloId){
+    //PAUSA a contagem
+    musicaPause.play();
+    Zerar()
+    return
+  }
 
+  //INICIA a contagem
+  musicaStart.play();
   intervaloId = setInterval(contagemRegressiva, 1000);
+  iconBtn.setAttribute('src', '/img/iconPausar.png')
+  comecarOuPausarBtn.textContent = "Pausar";
 }
 //para de executar depois q chega a 0
 function Zerar (){
+  iconBtn.setAttribute('src', '/img/iconFoguete.png');
+  comecarOuPausarBtn.textContent = "Começar";
   clearInterval(intervaloId);
   intervaloId = null;
 }
+
+function MostrarTempo (){
+  //vezes 1 segundo em milissegundos
+  const tempo = new Date(tempoDecorridoSegundos * 1000);
+  //formatação
+  const tempoFormatado = tempo.toLocaleTimeString('pt-Br', {minute : '2-digit', second : '2-digit'});
+  tempoNaTela.innerHTML = `${tempoFormatado}`
+}
+//mostre sempre o tempo
+MostrarTempo();
