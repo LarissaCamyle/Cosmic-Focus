@@ -50,6 +50,8 @@ const btnCurto = document.querySelectorAll('.minutagem-secao')[1];
 const btnLongo = document.querySelectorAll('.minutagem-secao')[2];
 const imgAstronauta = document.querySelector('.apresentacao-img');
 const titulo = document.querySelector('.apresentacao-texto');
+// Seleciona o elemento :root
+const root = document.documentElement;
 
 btnFoco.addEventListener('click', () =>{
   AlterarConteudo('url("/img/fundo1.png")', 'img/astronauta1.png', 1)
@@ -63,29 +65,37 @@ btnLongo.addEventListener('click', () =>{
   AlterarConteudo('url("/img/fundo3.png")', 'img/astronauta3.png', 3)
 });
 
+
 function AlterarConteudo(url, img, posicao){
+  //mudando imagens de fundo e do astronauta
   body.style.backgroundImage = url;
   imgAstronauta.setAttribute('src', img);
 
+  //mudando titulo
   switch(posicao){
     case 1:
-        titulo.innerHTML = 
-        `<h1>Aperte os cintos,<br>É hora de lançar sua</h1>
-        <h1 class="apresentacao-destaque">produtividade ao<br>infinito!</h1>`
-        break;
-
+      titulo.innerHTML = 
+      `<h1>Aperte os cintos,<br>É hora de lançar sua</h1>
+      <h1 class="apresentacao-destaque">produtividade ao<br>infinito!</h1>`
+      break;
     case 2:
-        titulo.innerHTML =
-        `<h1>Tempo para<BR>um pouso suave</h1>
-        <h1 class="apresentacao-destaque">Faça uma pausa<BR>entre as estrelas!</h1>`
-        break;
-    
+      titulo.innerHTML =
+      `<h1>Tempo para<BR>um pouso suave</h1>
+      <h1 class="apresentacao-destaque">Faça uma pausa<BR>entre as estrelas!</h1>`
+      break;
     case 3:
       titulo.innerHTML =
       `<H1>Hora de recarregar<br>os motores.</h1>
       <h1 class="apresentacao-destaque">Faça uma pausa<br>longa no cosmos!</h1>`
       break;
-
   }
 
+  //mudando cor tema
+  AlterarCorTema(posicao);
+}
+
+function AlterarCorTema (posicao){
+  root.style.setProperty('--cor-destaque', `var(--cor-${posicao})`);
+  root.style.setProperty('--fundo', `var(--fundo-${posicao})`);
+  root.style.setProperty('--borda', `var(--borda-${posicao})`);
 }
