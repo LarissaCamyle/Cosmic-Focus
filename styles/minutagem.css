@@ -59,7 +59,7 @@
     border-radius: 0.9rem;
     width: 4rem;
     height: 2rem;
-    background: var(--cor-destaque);
+    background: rgba(255, 255, 255, 0.267);
     display: flex;
     align-items: center;
     padding: 0 5px;
@@ -80,6 +80,10 @@
 .btn-musica-bola-animacao{
     transform: translateX(2.3rem); 
     right: 0;
+}
+
+.musica-input{
+    visibility: hidden;
 }
 
 .minutagem-btn{

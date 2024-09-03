@@ -25,52 +25,57 @@ document.querySelector(".texto-header").onmouseover = event => {
     }
     
     iteration += 1 / 3;
-  }, 40);
+  }, 30);
 }
 
-//BTN MUSICA ANIMAÇÃO
+//VARIAVEIS--------------------------------------------------------------------------------
+//alterar conteudo
+const body = document.querySelector('body');
+const root = document.documentElement;
+const imgAstronauta = document.querySelector('.apresentacao-img');
+const titulo = document.querySelector('.apresentacao-texto');
+const btnFoco = document.querySelectorAll('.minutagem-secao')[0];
+const btnCurto = document.querySelectorAll('.minutagem-secao')[1];
+const btnLongo = document.querySelectorAll('.minutagem-secao')[2];
+const ListaBtn = document.querySelectorAll('.minutagem-secao');
 const btnMusica = document.querySelector('.btn-musica-bola');
+const btnMusicaFundo = document.querySelector('.btn-musica');
+const musicaFocoInput = document.querySelector('.musica-input');
+const musica = new Audio('/sounds/musica-foco.mp3');
+musica.loop = true;
 
+//ALTERANDO CONTEUDO ----------------------------------------
+//alterando img, texto e cores
+btnFoco.addEventListener('click', () =>{
+  AlterarConteudo('url("/img/fundo1.png")', 'img/astronauta1.png', 1, btnFoco)
+});
+btnCurto.addEventListener('click', () =>{
+  AlterarConteudo('url("/img/fundo2.png")', 'img/astronauta2.png', 2, btnCurto)
+});
+btnLongo.addEventListener('click', () =>{
+  AlterarConteudo('url("/img/fundo3.png")', 'img/astronauta3.png', 3, btnLongo)
+});
+
+//toca musica e animação do btn musica
 btnMusica.onclick = function () {
   if(btnMusica.classList[1] === "btn-musica-bola-animacao"){
     btnMusica.classList.remove('btn-musica-bola-animacao');
+    btnMusicaFundo.style.setProperty('background', 'rgba(255, 255, 255, 0.267)');
+    musica.pause();
   }
   else
   {
     btnMusica.classList.add('btn-musica-bola-animacao');
+    btnMusicaFundo.style.setProperty('background', 'var(--cor-destaque)');
+    musica.play();
   }
 }
 
-//---------------------------------------------------------------------------------
-
-//Troca imagem fundo
-const body = document.querySelector('body');
-const btnFoco = document.querySelectorAll('.minutagem-secao')[0];
-const btnCurto = document.querySelectorAll('.minutagem-secao')[1];
-const btnLongo = document.querySelectorAll('.minutagem-secao')[2];
-const imgAstronauta = document.querySelector('.apresentacao-img');
-const titulo = document.querySelector('.apresentacao-texto');
-// Seleciona o elemento :root
-const root = document.documentElement;
-
-btnFoco.addEventListener('click', () =>{
-  AlterarConteudo('url("/img/fundo1.png")', 'img/astronauta1.png', 1)
-});
-
-btnCurto.addEventListener('click', () =>{
-  AlterarConteudo('url("/img/fundo2.png")', 'img/astronauta2.png', 2)
-});
-
-btnLongo.addEventListener('click', () =>{
-  AlterarConteudo('url("/img/fundo3.png")', 'img/astronauta3.png', 3)
-});
-
-
-function AlterarConteudo(url, img, posicao){
+//funções alterando conteudo
+function AlterarConteudo(url, img, posicao, btn){
   //mudando imagens de fundo e do astronauta
   body.style.backgroundImage = url;
   imgAstronauta.setAttribute('src', img);
-
   //mudando titulo
   switch(posicao){
     case 1:
@@ -89,13 +94,48 @@ function AlterarConteudo(url, img, posicao){
       <h1 class="apresentacao-destaque">Faça uma pausa<br>longa no cosmos!</h1>`
       break;
   }
-
   //mudando cor tema
-  AlterarCorTema(posicao);
+  AlterarCorTema(posicao, btn);
 }
 
-function AlterarCorTema (posicao){
+function AlterarCorTema (posicao, btn){
   root.style.setProperty('--cor-destaque', `var(--cor-${posicao})`);
   root.style.setProperty('--fundo', `var(--fundo-${posicao})`);
   root.style.setProperty('--borda', `var(--borda-${posicao})`);
+
+    //mudando btn de destaque
+  ListaBtn.forEach(function(btn){
+    btn.classList.remove('minutagem-destaque');
+  });
+  btn.classList.add('minutagem-destaque');
+}
+
+//TEMPORIZADOR---------------------------------------------------------
+let tempoDecorridoSegundos = 5;
+const btnComecar = document.querySelector('.btn-comecar');
+let intervaloId = null;
+
+//diminui o número referente aos segundos
+const contagemRegressiva = () => {
+  if(tempoDecorridoSegundos <= 0){
+    Zerar();
+    alert('finalizado');
+    return
+  }
+  tempoDecorridoSegundos -= 1
+  console.log(tempoDecorridoSegundos);
+}
+
+btnComecar.addEventListener('click', Iniciar);
+
+//executa a diminuição do num a cada 1 segundo
+function Iniciar (){
+  
+
+  intervaloId = setInterval(contagemRegressiva, 1000);
+}
+//para de executar depois q chega a 0
+function Zerar (){
+  clearInterval(intervaloId);
+  intervaloId = null;
 }
