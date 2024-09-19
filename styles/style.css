@@ -16,13 +16,16 @@
     --fundo-1 : rgba(55, 0, 255, 0.05);
     --borda-1 : rgba(55, 0, 255, 0.15);
 
-    --cor-2: #008CFF;
+    --cor-2: #0077D9;
     --fundo-2 : rgba(0, 111, 255, 0.05);
     --borda-2 : rgba(0, 111, 255, 0.15);
     
-    --cor-3: #FF1131;
+    --cor-3: #E8102D;
     --fundo-3 : rgba(255, 21, 95, 0.05);
     --borda-3 : rgba(255, 21, 95, 0.15);
+
+    --cor-fundo-nota: rgba(255, 255, 255, 0.089);
+    --cor-borda-nota: rgba(255, 255, 255, 0.37);
 
     --cor-destaque : var(--cor-1);
     --fundo: var(--fundo-1);
