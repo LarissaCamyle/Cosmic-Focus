@@ -48,7 +48,7 @@
     gap: 5rem;
 }
 
-.tarefas-adicionar{
+.btn-adicionar-tarefa{
     width: 25rem;
     margin: 3rem;
     border-radius: 2.5rem;
@@ -64,7 +64,127 @@
     text-align: center;
 }
 
-@media screen and (max-width: 500px) {
+.lista-de-tarefas{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2rem 0rem;
+    gap: 1rem;
+}
+
+.tarefa{
+    background: var(--fundo);
+    width: 26rem;
+    border: 4px solid var(--borda);
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: var(--fonte-exo);
+    font-weight: 500;
+}
+
+.tarefa img{
+    height: 1.3rem;
+}
+
+.tarefa div{
+    display: flex;
+    justify-content: row;
+    align-items: center;
+    gap: 0.6rem
+}
+
+.btn-editar-tarefa{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-editar-tarefa img{
+    height: 1.5rem;
+}
+
+.tarefa-pendente{
+    background-color: var(--cor-fundo-nota);
+    border: 4px solid var(--cor-borda-nota);
+}
+
+.adicionar-tarefa{
+    background: var(--cor-fundo-nota);
+    border: 4px solid var(--cor-borda-nota);
+    border-radius: 2rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.adicionar-tarefa form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--fonte-russo);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.adicionar-tarefa-input{
+    width: 25rem;
+    background: var(--cor-fundo-nota);
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: white;
+    font-family: var(--fonte-exo);
+    margin: 1rem 0rem;
+}
+
+.adicionar-tarefa-btns{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.adicionar-tarefa-btns button{
+    display: flex;
+    align-items: top;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+    font-family: var(--fonte-russo);
+    font-weight: 400;
+    color: white;
+    background: transparent;
+    border: none;
+}
+
+.adicionar-tarefa-btns button img{
+    height: 1.5rem;
+}
+
+.btn-salvar{
+    background-color: var(--cor-destaque)!important;
+    padding: 0.5rem 0.8rem;
+    border-radius: 1.5rem;
+}
+
+.btn-salvar:hover{
+    border-radius: 1.7rem;
+    transform: scale(1.07);
+}
+
+.btn-deletar:hover, .btn-cancelar:hover{
+    transform: scale(1.07);
+}
+
+.hidden{
+    display: none;
+}
+
+@media screen and (max-width: 370px) {
     .tarefas-cabecalho{
         gap: 1rem;
     }
@@ -87,10 +207,114 @@
         font-size: 1rem;
         gap: 0.3rem;
     }
+    
+    .lista-de-tarefas{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 2rem 0rem;
+        gap: 1rem;
+    }
 
+    .tarefa{
+        width: 17rem;
+        font-size: 0.8rem;
+    }
+
+    .tarefa img{
+        height: 1.2rem;
+    }
+    .btn-editar-tarefa img{
+        height: 1.4rem;
+    }
+
+    .adicionar-tarefa{
+        padding: 1rem 0.2rem;
+    }
+    
+    .adicionar-tarefa form{
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .adicionar-tarefa-input{
+        width: 18rem;
+        font-size: 0.8rem;
+    }
+    
+    .adicionar-tarefa-btns{
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .adicionar-tarefa-btns button{
+        font-size: 1.1rem;
+    }
+    
+    .adicionar-tarefa-btns button img{
+        height: 1.3rem;
+    }
 }
 
-@media screen and (min-width: 500px) and (max-width: 800px) {
+@media screen and (min-width: 370px)and (max-width: 530px) {
+    .tarefas-cabecalho{
+        gap: 1rem;
+    }
+    .tarefas-cabecalho1{
+        width: 20%;
+        font-size: 0.8rem;
+    }
+    .tarefas-cabecalho2{
+        width: 50%;
+        font-size: 1.2rem;
+        text-align: left;
+    }
+    .tarefas-titulo{
+        font-size: 1.4rem;
+        gap: 2.5rem;
+    }
+    .tarefas-adicionar{
+        width: 15rem;
+        margin: 2rem;
+        font-size: 1rem;
+        gap: 0.3rem;
+    }
+    .lista-de-tarefas{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 2rem 0rem;
+        gap: 1rem;
+    }
+    .tarefa{
+        width: 20rem;
+        font-size: 0.9rem;
+    }
+    .adicionar-tarefa{
+        padding: 1rem 0.5rem;
+    }
+    .adicionar-tarefa form{
+        font-size: 1.2rem;
+    }
+    .adicionar-tarefa-input{
+        width: 20rem;
+        font-size: 0.9rem;
+    }
+    .adicionar-tarefa-btns{
+        justify-content: center;
+        gap: 2.1rem;
+        flex-wrap: wrap;
+    }
+    .adicionar-tarefa-btns button{
+        font-size: 1.2rem;
+    }
+    .adicionar-tarefa-btns button img{
+        height: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 530px) and (max-width: 800px) {
     .tarefas-cabecalho1{
         font-size: 1rem;
     }
