@@ -6,11 +6,15 @@ const ulListaDeTarefas = document.querySelector(".lista-de-tarefas");
 const btnCancelarDigitacaoTarefa = document.querySelector(".btn-cancelar");
 const nomeDaTarefaEmAndamento = document.querySelector(".tarefas-cabecalho2");
 
+const btnLimparConcluidas = document.querySelector(".limpar-concluidas")
+const btnLimparTodas = document.querySelector(".limpar-todas");
+
 let tarefaSelecionada = null;
+let liTarefaSelecionada = null;
 
 //recebe as info do navegador, se não tiver informações armazenadas
 //cria um array vazio
-const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 
 function atualizarTarefasLocalStorage (){
@@ -72,27 +76,39 @@ function criarTarefa (tarefa){
         }
     }
 
-    //quando clicar no li da tarefa
-    tarefaLi.onclick = () => {
-        //remove a classe selecionada de todas as tarefas
-        const listaTarefasSelecionadas = document.querySelectorAll(".tarefa-concluida");
-        listaTarefasSelecionadas.forEach(selecionada => {
-            selecionada.classList.remove("tarefa-concluida")
-        })
-
-        //se acontecer um click numa tarefa ja selecionanda 
-        //retira a selecao
-        if(tarefaSelecionada === tarefa){
-            nomeDaTarefaEmAndamento.textContent = "";
-            tarefaSelecionada = null;
-            //para de executar o codigo
-            return
-        }
-
-        tarefaSelecionada = tarefa;
-        nomeDaTarefaEmAndamento.textContent = tarefa.descricao;
-        tarefaLi.classList.toggle('tarefa-concluida');
+    if(tarefa.completa){
+        tarefaLi.classList.add("tarefa-concluida");
+        tarefaLi.title = "Tarefa concluída!";
+        btnEditar.classList.add("btn-editar-desativado")
     }
+    else{
+            //quando clicar no li da tarefa
+        tarefaLi.onclick = () => {
+            //remove a classe selecionada de todas as tarefas
+            const listaTarefasSelecionadas = document.querySelectorAll(".tarefa-ativa");
+            listaTarefasSelecionadas.forEach(selecionada => {
+                selecionada.classList.remove("tarefa-ativa")
+            })
+    
+            //se acontecer um click numa tarefa ja selecionanda 
+            //retira a selecao
+            if(tarefaSelecionada === tarefa){
+                nomeDaTarefaEmAndamento.textContent = "";
+                tarefaSelecionada = null;
+                liTarefaSelecionada = null;
+                //para de executar o codigo
+                return
+            }
+    
+            tarefaSelecionada = tarefa;
+            liTarefaSelecionada = tarefaLi;
+            nomeDaTarefaEmAndamento.textContent = tarefa.descricao;
+            tarefaLi.classList.toggle('tarefa-ativa');
+        }
+    }
+
+
+
 }
 
 //mostra e esconde o campo de adicionar nova tarefa
@@ -100,10 +116,13 @@ btnAdicionarTarefa.addEventListener("click",  () => {
     formAdicionarTarefa.classList.toggle('hidden');
 })
 
+inputAdicionarTarefa.addEventListener("keydown", (evento) => {
+    if(evento.key === "Enter"){
+        salvarTarefa();
+    }
+})
 
-btnSalvarTarefa.addEventListener("click", (evento) => {
-    evento.preventDefault();
-
+function salvarTarefa () {
     const tarefa = {
         descricao: inputAdicionarTarefa.value
     }
@@ -116,6 +135,11 @@ btnSalvarTarefa.addEventListener("click", (evento) => {
 
     inputAdicionarTarefa.value= ''
     formAdicionarTarefa.classList.add("hidden")
+}
+
+btnSalvarTarefa.addEventListener("click", (evento) => {
+    evento.preventDefault();
+    salvarTarefa();
 })
 
 //pega as tarefas já armazenadas no localStorage e printa
@@ -128,3 +152,54 @@ btnCancelarDigitacaoTarefa.onclick = () => {
     inputAdicionarTarefa.value= ''
     formAdicionarTarefa.classList.add("hidden")
 }
+
+
+//EVENTO CUSTOMIZADO - TAREFA FINALIZADA---------------------
+
+document.addEventListener("FocoFinalizado", () => {
+    if(tarefaSelecionada && liTarefaSelecionada){
+        liTarefaSelecionada.classList.remove("tarefa-ativa");
+        liTarefaSelecionada.classList.add("tarefa-concluida");
+        liTarefaSelecionada.title = "Tarefa concluída!";
+        liTarefaSelecionada.querySelector("button").classList.add("btn-editar-desativado")
+
+        tarefaSelecionada.completa = true;
+        atualizarTarefasLocalStorage();
+    }
+})
+
+
+//HOVER OPCOES DE LIMPAR TAREFAS-------------------------------
+const info = document.querySelector(".icon-info");
+const ulLimparTarefas = document.querySelector(".info-opcoes");
+
+info.addEventListener("mouseenter", () => {
+    ulLimparTarefas.classList.remove("hidden");
+})
+
+ulLimparTarefas.addEventListener("mouseleave", () => {
+    ulLimparTarefas.classList.add("hidden")
+})
+
+
+//LIMPAR TAREFAS-----------------------------------------------
+
+const limparTarefas = (somenteCompletas) => {
+    const classe = somenteCompletas ? 
+                   ".tarefa-concluida" 
+                   : ".tarefa"
+    //remove do html
+    document.querySelectorAll(classe).forEach(elemento => {
+        elemento.remove();
+    })
+
+    //filtra tarefas e armazena no array
+    tarefas = somenteCompletas ?  
+              tarefas.filter(tarefa => !tarefa.completa) 
+              : tarefas = [];
+
+    atualizarTarefasLocalStorage();
+}
+
+btnLimparConcluidas.onclick = () => limparTarefas(true);
+btnLimparTodas.onclick = () => limparTarefas(false);

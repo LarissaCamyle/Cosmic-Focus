@@ -45,6 +45,7 @@ const musica = new Audio('/sounds/musica-foco.mp3');
 musica.loop = true;
 //temporizador
 let tempoDecorridoSegundos = 1500;
+/* let tempoDecorridoSegundos = 1500; */
 
 //ALTERANDO CONTEUDO ----------------------------------------
 //alterando img, texto e cores
@@ -139,6 +140,17 @@ const contagemRegressiva = () => {
   //CONCLUIDO
   if(tempoDecorridoSegundos <= 0){
     musicaConcluido.play();
+
+    let corDestaque = getComputedStyle(root).getPropertyValue('--cor-destaque').trim();
+    let cor1 = getComputedStyle(root).getPropertyValue('--cor-1').trim();
+    let focoAtivo = corDestaque === cor1;
+
+    if(focoAtivo){
+      const evento = new CustomEvent('FocoFinalizado')
+      document.dispatchEvent(evento)
+
+    }
+
     Zerar();
     return
   }

@@ -26,6 +26,8 @@
 
     --cor-fundo-nota: rgba(255, 255, 255, 0.089);
     --cor-borda-nota: rgba(255, 255, 255, 0.37);
+    --cor-fundo-ativa: rgba(255, 255, 255, 0.26);
+    --cor-borda-ativa: rgba(255, 255, 255, 0.76);
 
     --cor-destaque : var(--cor-1);
     --fundo: var(--fundo-1);
