@@ -177,17 +177,11 @@ info.addEventListener("mouseenter", () => {
     ulLimparTarefas.classList.remove("hidden");
 })
 info.addEventListener("click", () => {
-    ulLimparTarefas.classList.remove("hidden");
+    ulLimparTarefas.classList.toggle("hidden");
 })
 ulLimparTarefas.addEventListener("mouseleave", () => {
     ulLimparTarefas.classList.add("hidden")
 })
-// Verifica se o clique ocorreu fora do ulLimparTarefas
-document.addEventListener("click", (event) => {
-    if (!ulLimparTarefas.contains(event.target)) {
-        ulLimparTarefas.classList.add("hidden");
-    }
-});
 
 
 //LIMPAR TAREFAS-----------------------------------------------
