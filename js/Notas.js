@@ -176,6 +176,9 @@ const ulLimparTarefas = document.querySelector(".info-opcoes");
 info.addEventListener("mouseenter", () => {
     ulLimparTarefas.classList.remove("hidden");
 })
+info.addEventListener("click", () => {
+    ulLimparTarefas.classList.remove("hidden");
+})
 ulLimparTarefas.addEventListener("mouseleave", () => {
     ulLimparTarefas.classList.add("hidden")
 })
